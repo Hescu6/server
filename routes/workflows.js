@@ -45,19 +45,19 @@ const userRoutes = (app, fs) => {
     //         true);
     // });
 
-    //WRITE
-    app.post('/workflows', (req, res) => {
+    // //WRITE
+    // app.post('/workflows', (req, res) => {
 
-        readFile(data => {
-            console.log(data['workflows'])
-            // add the new user
-            data['workflows'].push(req.body);
-            writeFile(JSON.stringify(data, null, 2), () => {
-                res.status(200).send('new workflow added');
-            });
-        },
-            true);
-    });
+    //     readFile(data => {
+    //         console.log(data['workflows'])
+    //         // add the new user
+    //         data['workflows'].push(req.body);
+    //         writeFile(JSON.stringify(data, null, 2), () => {
+    //             res.status(200).send('new workflow added');
+    //         });
+    //     },
+    //         true);
+    // });
 
 
 

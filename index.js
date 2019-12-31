@@ -19,6 +19,7 @@ app.use(cors(
 //   origin:'http://localhost:4200'
 // }
 ));
+app.use(express.json({ limit: '10mb' }));
 app.use(express.static('public'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,7 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const routes = require('./routes/routes.js')(app, fs);
 
 // finally, launch our server on port 3000.
-const server = app.listen(3000, () => {
+const server = app.listen(process.env.PORT, () => {
   console.log('listening on port %s...', server.address().port);
 });
 
