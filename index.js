@@ -13,10 +13,12 @@ const fs = require('fs');
 
 // configure our express instance with some body-parser settings 
 // including handling JSON data
-app.use(cors({
-  // origin: process.env.WFAPI_CORS
-  origin:'http://localhost:4200'
-}));
+app.use(cors(
+//   {
+//   // origin: process.env.WFAPI_CORS
+//   origin:'http://localhost:4200'
+// }
+));
 app.use(express.static('public'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
