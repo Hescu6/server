@@ -11,16 +11,18 @@ const app = express();
 // (we'll be using this later to serve our JSON files
 const fs = require('fs');
 
+
+
 // configure our express instance with some body-parser settings 
 // including handling JSON data
 app.use(cors(
-//   {
-//   // origin: process.env.WFAPI_CORS
-//   origin:'http://localhost:4200'
-// }
+  {
+  // origin: process.env.WFAPI_CORS
+  origin:[process.env.CORSWFLOCAL, process.env.CORSWFWEB]
+}
 ));
 app.use(express.json({ limit: '10mb' }));
-app.use(express.static('public'))
+app.use(express.static('docs'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
