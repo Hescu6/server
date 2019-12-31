@@ -1101,6 +1101,33 @@
           "defaultCase": []
         }
       ]
+    },
+    {
+      "name": "TESTING",
+      "version": 2,
+      "tasks": [
+        {
+          "name": "1st Task",
+          "decisionCases": {
+            "#": [
+              {
+                "name": "null"
+              }
+            ],
+            "@": [
+              {
+                "name": "null"
+              }
+            ],
+            "$": [
+              {
+                "name": "null"
+              }
+            ]
+          },
+          "defaultCase": []
+        }
+      ]
     }
   ]
 }
