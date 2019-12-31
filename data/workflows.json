@@ -1,0 +1,1106 @@
+{
+  "workflows": [
+    {
+      "name": "io-file-migrator",
+      "version": 1,
+      "tasks": [
+        {
+          "name": "file-mover",
+          "type": "SIMPLE",
+          "taskReferenceName": "file-mover",
+          "inputParameters": {
+            "source": "${ workflow.input.source }",
+            "destination": "${ workflow.input.destination }"
+          },
+          "optional": true
+        }
+      ],
+      "outputParameters": {},
+      "inputParameters": [
+        "source",
+        "destination"
+      ],
+      "restartable": false
+    },
+    {
+      "name": "io-file-replicator",
+      "version": 1,
+      "tasks": [
+        {
+          "name": "file-copy",
+          "type": "SIMPLE",
+          "taskReferenceName": "file-copy",
+          "inputParameters": {
+            "source": "${ workflow.input.source }",
+            "destination": "${ workflow.input.destination }"
+          },
+          "optional": false
+        }
+      ],
+      "outputParameters": {},
+      "inputParameters": [
+        "source",
+        "destination"
+      ],
+      "restartable": false
+    },
+    {
+      "name": "wf-kitchen-Regular",
+      "version": 1,
+      "tasks": [
+        {
+          "name": "dice-roll",
+          "taskReferenceName": "roller"
+        },
+        {
+          "name": "decision",
+          "type": "DECISION",
+          "caseValueParam": "roll",
+          "decisionCases": {
+            "1": [
+              {
+                "name": "WAIT",
+                "type": "WAIT"
+              }
+            ],
+            "2": [
+              {
+                "name": "TERMINATE",
+                "type": "TERMINATE",
+                "inputParameters": {
+                  "terminationStatus": "COMPLETED"
+                }
+              }
+            ],
+            "3": [
+              {
+                "name": "dice-roll",
+                "type": "SIMPLE"
+              },
+              {
+                "name": "dice-roll",
+                "type": "SIMPLE"
+              }
+            ],
+            "4": [
+              {
+                "name": "debug-timeout"
+              }
+            ]
+          },
+          "defaultCase": [
+            {
+              "name": "TERMINATE",
+              "type": "TERMINATE",
+              "inputParameters": {
+                "terminationStatus": "FAILED"
+              }
+            }
+          ]
+        }
+      ],
+      "inputParameters": [
+        "source",
+        "destination"
+      ]
+    },
+    {
+      "name": "wf-kitchen-2Root-2default",
+      "version": 1,
+      "tasks": [
+        {
+          "name": "dice-roll",
+          "taskReferenceName": "roller"
+        },
+        {
+          "name": "decision",
+          "type": "DECISION",
+          "caseValueParam": "roll",
+          "decisionCases": {
+            "1": [
+              {
+                "name": "WAIT",
+                "type": "WAIT"
+              }
+            ],
+            "2": [
+              {
+                "name": "TERMINATE",
+                "type": "TERMINATE",
+                "inputParameters": {
+                  "terminationStatus": "COMPLETED"
+                }
+              }
+            ],
+            "3": [
+              {
+                "name": "dice-roll",
+                "type": "SIMPLE"
+              },
+              {
+                "name": "dice-roll",
+                "type": "SIMPLE"
+              }
+            ],
+            "4": [
+              {
+                "name": "debug-timeout"
+              }
+            ]
+          },
+          "defaultCase": [
+            {
+              "name": "TERMINATE",
+              "type": "TERMINATE",
+              "inputParameters": {
+                "terminationStatus": "FAILED"
+              }
+            }
+          ]
+        },
+        {
+          "name": "test-after",
+          "type": "dice",
+          "taskReferenceName": "tst",
+          "defaultCase": [
+            {
+              "name": "TERMINATE",
+              "type": "TERMINATE",
+              "inputParameters": {
+                "terminationStatus": "FAILED"
+              }
+            }
+          ],
+          "decisionCases": {
+            "1B": [
+              {
+                "name": "tstB",
+                "type": "PUBLISH"
+              }
+            ],
+            "2B": [
+              {
+                "name": "tstB2"
+              }
+            ],
+            "3B": [
+              {
+                "name": "tstB3"
+              },
+              {
+                "name": "testbbb"
+              }
+            ]
+          }
+        }
+      ],
+      "inputParameters": [
+        "source",
+        "destination"
+      ]
+    },
+    {
+      "name": "wf-kitchen-2-0-Decision",
+      "version": 1,
+      "tasks": [
+        {
+          "name": "dice-roll",
+          "taskReferenceName": "roller"
+        },
+        {
+          "name": "decision",
+          "type": "DECISION",
+          "caseValueParam": "roll",
+          "decisionCases": {
+            "1": [
+              {
+                "name": "WAIT",
+                "type": "WAIT"
+              }
+            ],
+            "2": [
+              {
+                "name": "TERMINATE",
+                "type": "TERMINATE",
+                "inputParameters": {
+                  "terminationStatus": "COMPLETED"
+                }
+              }
+            ],
+            "3": [
+              {
+                "name": "dice-roll",
+                "type": "SIMPLE"
+              },
+              {
+                "name": "dice-roll",
+                "type": "SIMPLE",
+                "decisionCases": {
+                  "A1": [
+                    {
+                      "name": "2Layer",
+                      "type": "SIMPLE",
+                      "inputParameters": {
+                        "terminationStatus": "CONTINUE"
+                      }
+                    }
+                  ],
+                  "A2": [
+                    {
+                      "name": "3Layer",
+                      "type": "PUBLISH"
+                    }
+                  ]
+                }
+              }
+            ],
+            "4": [
+              {
+                "name": "debug-timeout"
+              }
+            ]
+          },
+          "defaultCase": [
+            {
+              "name": "TERMINATE",
+              "type": "TERMINATE",
+              "inputParameters": {
+                "terminationStatus": "FAILED"
+              }
+            }
+          ]
+        }
+      ],
+      "inputParameters": [
+        "source",
+        "destination"
+      ]
+    },
+    {
+      "name": "wf-kitchen-3-1",
+      "version": 1,
+      "tasks": [
+        {
+          "name": "dice-roll",
+          "taskReferenceName": "roller"
+        },
+        {
+          "name": "decision",
+          "type": "DECISION",
+          "caseValueParam": "roll",
+          "decisionCases": {
+            "1": [
+              {
+                "name": "WAIT",
+                "type": "WAIT"
+              }
+            ],
+            "2": [
+              {
+                "name": "TERMINATE",
+                "type": "TERMINATE",
+                "inputParameters": {
+                  "terminationStatus": "COMPLETED"
+                }
+              }
+            ],
+            "3": [
+              {
+                "name": "dice-roll",
+                "type": "SIMPLE"
+              },
+              {
+                "name": "dice-roll",
+                "type": "SIMPLE",
+                "decisionCases": {
+                  "1A": [
+                    {
+                      "name": "example1"
+                    },
+                    {
+                      "name": "exaple2",
+                      "type": "SIMPLE"
+                    }
+                  ],
+                  "2A": [
+                    {
+                      "name": "example2A"
+                    }
+                  ]
+                }
+              }
+            ],
+            "4": [
+              {
+                "name": "debug-timeout",
+                "decisionCases": {
+                  "1B": [
+                    {
+                      "name": "testB"
+                    }
+                  ],
+                  "2B": [
+                    {
+                      "name": "testB1",
+                      "type": "SIMPLE"
+                    },
+                    {
+                      "name": "testB1Hello",
+                      "type": "REC",
+                      "decisionCases": {
+                        "1C": [
+                          {
+                            "name": "last",
+                            "type": "TEST"
+                          }
+                        ],
+                        "2C": [
+                          {
+                            "name": "realLast"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "testLast",
+                      "type": "REC"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "defaultCase": [
+            {
+              "name": "TERMINATE",
+              "type": "TERMINATE",
+              "inputParameters": {
+                "terminationStatus": "FAILED"
+              }
+            }
+          ]
+        },
+        {
+          "name": "crash",
+          "type": "SIMPLE"
+        }
+      ],
+      "inputParameters": [
+        "source",
+        "destination"
+      ]
+    },
+    {
+      "name": "wf-kitchen-3-2",
+      "version": 1,
+      "tasks": [
+        {
+          "name": "dice-roll",
+          "taskReferenceName": "roller"
+        },
+        {
+          "name": "decision",
+          "type": "DECISION",
+          "caseValueParam": "roll",
+          "decisionCases": {
+            "1": [
+              {
+                "name": "WAIT",
+                "type": "WAIT"
+              }
+            ],
+            "2": [
+              {
+                "name": "TERMINATE",
+                "type": "TERMINATE",
+                "inputParameters": {
+                  "terminationStatus": "COMPLETED"
+                }
+              }
+            ],
+            "3": [
+              {
+                "name": "dice-roll",
+                "type": "SIMPLE"
+              },
+              {
+                "name": "dice-roll",
+                "type": "SIMPLE",
+                "decisionCases": {
+                  "1A": [
+                    {
+                      "name": "example1"
+                    },
+                    {
+                      "name": "exaple2",
+                      "type": "SIMPLE"
+                    }
+                  ],
+                  "2A": [
+                    {
+                      "name": "example2A"
+                    }
+                  ]
+                }
+              }
+            ],
+            "4": [
+              {
+                "name": "debug-timeout",
+                "decisionCases": {
+                  "1B": [
+                    {
+                      "name": "testB"
+                    }
+                  ],
+                  "2B": [
+                    {
+                      "name": "testB1",
+                      "type": "SIMPLE"
+                    },
+                    {
+                      "name": "testB1Hello",
+                      "type": "REC",
+                      "decisionCases": {
+                        "1C": [
+                          {
+                            "name": "last",
+                            "type": "TEST",
+                            "decisionCases": {
+                              "1D": [
+                                {
+                                  "name": "test",
+                                  "type": "TERMINATE"
+                                }
+                              ],
+                              "2D": [
+                                {
+                                  "name": "testD"
+                                }
+                              ]
+                            }
+                          }
+                        ],
+                        "2C": [
+                          {
+                            "name": "realLast"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "testLast",
+                      "type": "REC"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "defaultCase": [
+            {
+              "name": "TERMINATE",
+              "type": "TERMINATE",
+              "inputParameters": {
+                "terminationStatus": "FAILED"
+              }
+            }
+          ]
+        },
+        {
+          "name": "crash",
+          "type": "SIMPLE"
+        }
+      ],
+      "inputParameters": [
+        "source",
+        "destination"
+      ]
+    },
+    {
+      "name": "wf-kitchen-3-0",
+      "version": 1,
+      "tasks": [
+        {
+          "name": "dice-roll",
+          "taskReferenceName": "roller"
+        },
+        {
+          "name": "decision",
+          "type": "DECISION",
+          "caseValueParam": "roll",
+          "decisionCases": {
+            "1": [
+              {
+                "name": "WAIT",
+                "type": "WAIT"
+              }
+            ],
+            "2": [
+              {
+                "name": "TERMINATE",
+                "type": "TERMINATE",
+                "inputParameters": {
+                  "terminationStatus": "COMPLETED"
+                }
+              }
+            ],
+            "3": [
+              {
+                "name": "dice-roll",
+                "type": "SIMPLE"
+              },
+              {
+                "name": "dice-roll",
+                "type": "SIMPLE",
+                "decisionCases": {
+                  "1A": [
+                    {
+                      "name": "example1"
+                    },
+                    {
+                      "name": "exaple2",
+                      "type": "SIMPLE"
+                    }
+                  ],
+                  "2A": [
+                    {
+                      "name": "example2A"
+                    }
+                  ]
+                }
+              }
+            ],
+            "4": [
+              {
+                "name": "debug-timeout",
+                "decisionCases": {
+                  "1B": [
+                    {
+                      "name": "testB"
+                    }
+                  ],
+                  "2B": [
+                    {
+                      "name": "testB1",
+                      "type": "SIMPLE"
+                    },
+                    {
+                      "name": "testB1Hello",
+                      "type": "REC"
+                    },
+                    {
+                      "name": "testLast",
+                      "type": "REC"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "defaultCase": [
+            {
+              "name": "TERMINATE",
+              "type": "TERMINATE",
+              "inputParameters": {
+                "terminationStatus": "FAILED"
+              }
+            }
+          ]
+        },
+        {
+          "name": "crash",
+          "type": "SIMPLE"
+        }
+      ],
+      "inputParameters": [
+        "source",
+        "destination"
+      ]
+    },
+    {
+      "name": "DELETE",
+      "version": 2,
+      "tasks": [
+        {
+          "name": "1st",
+          "decisionCases": {
+            "23": [
+              {
+                "name": "null"
+              }
+            ],
+            "234": [
+              {
+                "name": "null"
+              }
+            ]
+          },
+          "defaultCase": []
+        }
+      ]
+    },
+    {
+      "name": "delete2",
+      "version": 3,
+      "tasks": [
+        {
+          "name": "dice-roll",
+          "taskReferenceName": "roller"
+        },
+        {
+          "name": "decision",
+          "type": "DECISION",
+          "caseValueParam": "roll",
+          "decisionCases": {
+            "1": [
+              {
+                "name": "WAIT",
+                "type": "WAIT"
+              }
+            ],
+            "2": [
+              {
+                "name": "TERMINATE",
+                "type": "TERMINATE",
+                "inputParameters": {
+                  "terminationStatus": "COMPLETED"
+                }
+              }
+            ],
+            "3": [
+              {
+                "name": "dice-roll",
+                "type": "SIMPLE"
+              },
+              {
+                "name": "dice-roll",
+                "type": "SIMPLE"
+              }
+            ],
+            "4": [
+              {
+                "name": "debug-timeout"
+              }
+            ]
+          },
+          "defaultCase": [
+            {
+              "name": "TERMINATE",
+              "type": "TERMINATE",
+              "inputParameters": {
+                "terminationStatus": "FAILED"
+              }
+            }
+          ]
+        },
+        {
+          "name": "dice-roll",
+          "taskReferenceName": "roller"
+        },
+        {
+          "name": "decision",
+          "type": "DECISION",
+          "caseValueParam": "roll",
+          "decisionCases": {
+            "1": [
+              {
+                "name": "WAIT",
+                "type": "WAIT"
+              }
+            ],
+            "2": [
+              {
+                "name": "TERMINATE",
+                "type": "TERMINATE",
+                "inputParameters": {
+                  "terminationStatus": "COMPLETED"
+                }
+              }
+            ],
+            "3": [
+              {
+                "name": "dice-roll",
+                "type": "SIMPLE"
+              },
+              {
+                "name": "dice-roll",
+                "type": "SIMPLE"
+              }
+            ],
+            "4": [
+              {
+                "name": "debug-timeout"
+              }
+            ]
+          },
+          "defaultCase": [
+            {
+              "name": "TERMINATE",
+              "type": "TERMINATE",
+              "inputParameters": {
+                "terminationStatus": "FAILED"
+              }
+            }
+          ]
+        }
+      ],
+      "inputParameters": [
+        "source",
+        "destination"
+      ]
+    },
+    {
+      "name": "TESTING",
+      "version": 1,
+      "tasks": [
+        {
+          "name": "1st Task",
+          "decisionCases": {
+            "#": [
+              {
+                "name": "null"
+              }
+            ],
+            "@": [
+              {
+                "name": "null"
+              }
+            ],
+            "$": [
+              {
+                "name": "null"
+              }
+            ]
+          },
+          "defaultCase": []
+        }
+      ]
+    },
+    {
+      "name": "io-file-migrator",
+      "version": 5,
+      "tasks": [
+        {
+          "name": "file-mover",
+          "type": "SIMPLE",
+          "taskReferenceName": "file-mover",
+          "inputParameters": {
+            "source": "${ workflow.input.source }",
+            "destination": "${ workflow.input.destination }"
+          },
+          "optional": true
+        },
+        {
+          "name": "file-mover",
+          "type": "SIMPLE",
+          "taskReferenceName": "file-mover",
+          "inputParameters": {
+            "source": "${ workflow.input.source }",
+            "destination": "${ workflow.input.destination }"
+          },
+          "optional": true
+        },
+        {
+          "name": "file-mover",
+          "type": "SIMPLE",
+          "taskReferenceName": "file-mover",
+          "inputParameters": {
+            "source": "${ workflow.input.source }",
+            "destination": "${ workflow.input.destination }"
+          },
+          "optional": true
+        },
+        {
+          "name": "file-mover",
+          "type": "SIMPLE",
+          "taskReferenceName": "file-mover",
+          "inputParameters": {
+            "source": "${ workflow.input.source }",
+            "destination": "${ workflow.input.destination }"
+          },
+          "optional": true
+        }
+      ],
+      "inputParameters": [
+        "source",
+        "destination"
+      ],
+      "restartable": false
+    },
+    {
+      "name": "DELETETEST",
+      "version": 3,
+      "tasks": [
+        {
+          "name": "1st",
+          "decisionCases": {
+            "23": [
+              {
+                "name": "null"
+              }
+            ],
+            "234": [
+              {
+                "name": "null"
+              }
+            ]
+          },
+          "defaultCase": []
+        }
+      ]
+    },
+    {
+      "name": "wf-kitchen-3-1",
+      "version": 2,
+      "tasks": [
+        {
+          "name": "dice-roll",
+          "taskReferenceName": "roller"
+        },
+        {
+          "name": "decision",
+          "type": "DECISION",
+          "caseValueParam": "roll",
+          "decisionCases": {
+            "1": [
+              {
+                "name": "WAIT",
+                "type": "WAIT"
+              }
+            ],
+            "2": [
+              {
+                "name": "TERMINATE",
+                "type": "TERMINATE",
+                "inputParameters": {
+                  "terminationStatus": "COMPLETED"
+                }
+              }
+            ],
+            "3": [
+              {
+                "name": "dice-roll",
+                "type": "SIMPLE"
+              },
+              {
+                "name": "dice-roll",
+                "type": "SIMPLE",
+                "decisionCases": {
+                  "1A": [
+                    {
+                      "name": "example1"
+                    },
+                    {
+                      "name": "exaple2",
+                      "type": "SIMPLE"
+                    }
+                  ],
+                  "2A": [
+                    {
+                      "name": "example2A"
+                    }
+                  ]
+                }
+              }
+            ],
+            "4": [
+              {
+                "name": "debug-timeout",
+                "decisionCases": {
+                  "1B": [
+                    {
+                      "name": "testB"
+                    }
+                  ],
+                  "2B": [
+                    {
+                      "name": "testB1",
+                      "type": "SIMPLE"
+                    },
+                    {
+                      "name": "testB1Hello",
+                      "type": "REC",
+                      "decisionCases": {
+                        "1C": [
+                          {
+                            "name": "last",
+                            "type": "TEST"
+                          }
+                        ],
+                        "2C": [
+                          {
+                            "name": "realLast"
+                          },
+                          {
+                            "name": "testLast",
+                            "type": "REC"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "defaultCase": [
+            {
+              "name": "TERMINATE",
+              "type": "TERMINATE",
+              "inputParameters": {
+                "terminationStatus": "FAILED"
+              }
+            }
+          ]
+        },
+        {
+          "name": "crash",
+          "type": "SIMPLE"
+        }
+      ],
+      "inputParameters": [
+        "source",
+        "destination"
+      ]
+    },
+    {
+      "name": "delete2",
+      "version": 4,
+      "tasks": [
+        {
+          "name": "dice-roll",
+          "taskReferenceName": "roller"
+        },
+        {
+          "name": "decision",
+          "type": "DECISION",
+          "caseValueParam": "roll",
+          "decisionCases": {
+            "1": [
+              {
+                "name": "dice-roll",
+                "type": "SIMPLE"
+              }
+            ],
+            "2": [
+              {
+                "name": "WAIT",
+                "type": "WAIT"
+              }
+            ],
+            "3": [
+              {
+                "name": "TERMINATE",
+                "type": "TERMINATE",
+                "inputParameters": {
+                  "terminationStatus": "COMPLETED"
+                }
+              }
+            ],
+            "4": [
+              {
+                "name": "dice-roll",
+                "type": "SIMPLE"
+              },
+              {
+                "name": "dice-roll",
+                "type": "SIMPLE"
+              }
+            ]
+          },
+          "defaultCase": [
+            {
+              "name": "TERMINATE",
+              "type": "TERMINATE",
+              "inputParameters": {
+                "terminationStatus": "FAILED"
+              }
+            }
+          ]
+        },
+        {
+          "name": "dice-roll",
+          "taskReferenceName": "roller"
+        },
+        {
+          "name": "decision",
+          "type": "DECISION",
+          "caseValueParam": "roll",
+          "decisionCases": {
+            "1": [
+              {
+                "name": "WAIT",
+                "type": "WAIT"
+              }
+            ],
+            "2": [
+              {
+                "name": "TERMINATE",
+                "type": "TERMINATE",
+                "inputParameters": {
+                  "terminationStatus": "COMPLETED"
+                }
+              }
+            ],
+            "3": [
+              {
+                "name": "dice-roll",
+                "type": "SIMPLE"
+              },
+              {
+                "name": "dice-roll",
+                "type": "SIMPLE"
+              }
+            ],
+            "4": [
+              {
+                "name": "debug-timeout"
+              }
+            ]
+          },
+          "defaultCase": [
+            {
+              "name": "TERMINATE",
+              "type": "TERMINATE",
+              "inputParameters": {
+                "terminationStatus": "FAILED"
+              }
+            }
+          ]
+        }
+      ],
+      "inputParameters": [
+        "source",
+        "destination"
+      ]
+    },
+    {
+      "name": "TESTING",
+      "version": 2,
+      "tasks": [
+        {
+          "name": "1st Task",
+          "decisionCases": {
+            "#": [
+              {
+                "name": "null"
+              }
+            ],
+            "@": [
+              {
+                "name": "null"
+              }
+            ],
+            "$": [
+              {
+                "name": "null"
+              }
+            ]
+          },
+          "defaultCase": []
+        }
+      ]
+    }
+  ]
+}

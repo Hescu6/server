@@ -1,0 +1,27 @@
+{
+  "name": "expressserver",
+  "version": "1.0.0",
+  "description": "Common server for API calls from portfolio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hescu6/server.git"
+  },
+  "author": "Hildebrando Escudero",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hescu6/server/issues"
+  },
+  "homepage": "https://github.com/Hescu6/server#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "nedb": "^1.8.0",
+    "node-fetch": "^2.6.0"
+  }
+}
