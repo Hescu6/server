@@ -14,8 +14,9 @@ const fs = require('fs');
 // configure our express instance with some body-parser settings 
 // including handling JSON data
 app.use(cors({
-    origin: process.env.WFAPI_CORS
-  }));
+  origin: process.env.WFAPI_CORS
+}));
+app.use(express.static('public'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -24,6 +25,6 @@ const routes = require('./routes/routes.js')(app, fs);
 
 // finally, launch our server on port 3001.
 const server = app.listen(3000, () => {
-    console.log('listening on port %s...', server.address().port);
+  console.log('listening on port %s...', server.address().port);
 });
 
