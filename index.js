@@ -22,7 +22,7 @@ app.use(cors(
 }
 ));
 app.use(express.json({ limit: '10mb' }));
-app.use(express.static('docs'))
+app.use(express.static('public'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
