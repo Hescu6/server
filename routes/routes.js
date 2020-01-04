@@ -1,8 +1,10 @@
 // load up our shiny new route for users
-const userRoutes = require('./workflows');
+const wfRoutes = require('./workflows');
+const emailRoutes = require('./email');
 
 const appRouter = (app, fs) => {
-    userRoutes(app, fs);
+    wfRoutes(app, fs);
+    emailRoutes(app);
 };
 
 // this line is unchanged

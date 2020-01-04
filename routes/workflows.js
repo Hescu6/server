@@ -1,6 +1,6 @@
 
 
-const userRoutes = (app, fs) => {
+const wfRoutes = (app, fs) => {
 
     // variables
     const dataPath = './data/workflows.json';
@@ -72,5 +72,5 @@ const userRoutes = (app, fs) => {
     });
 };
 
-module.exports = userRoutes;
+module.exports = wfRoutes;
 
