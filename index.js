@@ -17,7 +17,6 @@ const fs = require('fs');
 // handle JSON data
 app.use(cors(
   {
-  // origin: process.env.WFAPI_CORS
   origin:[
     process.env.CORSWFLOCAL, 
     process.env.CORSWFWEB, 
