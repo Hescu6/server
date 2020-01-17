@@ -1,4 +1,5 @@
-// load up the express framework and body-parser helper
+
+const fetch = require('node-fetch');
 const express = require('express');
 const bodyParser = require('body-parser');
 var cors = require('cors');
@@ -12,8 +13,8 @@ const fs = require('fs');
 
 
 
-// configure our express instance with some body-parser settings 
-// including handling JSON data
+// configure express instance & body-parser settings 
+// handle JSON data
 app.use(cors(
   {
   // origin: process.env.WFAPI_CORS
@@ -29,8 +30,8 @@ app.use(express.static('public'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// this is where we'll handle our various routes from
-const routes = require('./routes/routes.js')(app, fs);
+// routes handler
+const routes = require('./routes/routes.js')(app, fs, fetch);
 
 
 const server = app.listen(process.env.PORT, () => {

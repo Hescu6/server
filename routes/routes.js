@@ -1,11 +1,11 @@
-// load up our shiny new route for users
 const wfRoutes = require('./workflows');
 const emailRoutes = require('./email');
+const weatherRoutes = require('./weather');
 
-const appRouter = (app, fs) => {
+const appRouter = (app, fs, fetch) => {
     wfRoutes(app, fs);
     emailRoutes(app);
+    weatherRoutes(app, fetch);
 };
 
-// this line is unchanged
 module.exports = appRouter;
