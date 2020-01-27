@@ -21,7 +21,8 @@ app.use(cors(
     process.env.CORSWFLOCAL, 
     process.env.CORSWFWEB, 
     process.env.WFAPI_CORS,
-    process.env.CORSPORTFOLIO]
+    process.env.CORSPORTFOLIO,
+    process.env.CORSPORTFOLIO2]
 }
 ));
 app.use(express.json({ limit: '10mb' }));
