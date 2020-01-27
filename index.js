@@ -21,11 +21,9 @@ app.use(cors(
     process.env.CORSWFLOCAL, 
     process.env.CORSWFWEB, 
     process.env.WFAPI_CORS,
-    process.env.CORSPORTFOLIO,
-    process.env.CORSPORTFOLIO2]
+    process.env.CORSPORTFOLIO]
 }
 ));
-app.use(express.json({ limit: '10mb' }));
 app.use(express.static('public'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

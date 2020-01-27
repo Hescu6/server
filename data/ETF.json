@@ -52,20 +52,8 @@
     "etf": "EWK"
   },
   {
-    "country": "Colombia",
-    "etf": "COLX"
-  },
-  {
-    "country": "Peru",
-    "etf": "EP"
-  },
-  {
     "country": "France",
     "etf": "EWQ"
-  },
-  {
-    "country": "Philippines",
-    "etf": "EPHE"
   },
   {
     "country": "Qatar",
@@ -80,24 +68,12 @@
     "etf": "TUR"
   },
   {
-    "country": "United Kingdom",
-    "etf": "EWU"
-  },
-  {
     "country": "Vietnam",
     "etf": "VNM"
   },
   {
     "country": "Taiwan",
     "etf": "EWT"
-  },
-  {
-    "country": "South Korea",
-    "etf": "KORU"
-  },
-  {
-    "country": "Israel",
-    "etf": "EIS"
   },
   {
     "country": "Denmark",

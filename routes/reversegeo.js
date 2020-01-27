@@ -6,9 +6,10 @@ const reversegeoRoutes = (app, fetch) => {
       const latlon = request.params.latlon.split(",");
       lat = latlon[0];
       lon = latlon[1];
-      let geocodeAPI = `http://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=18&addressdetails=1`
+      let geocodeAPI = `http://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
       let reversegeoResponse = await fetch(geocodeAPI);
       let reverse = await reversegeoResponse.json();
+      console.log(reverse)
       response.json(reverse);
     });
   };
