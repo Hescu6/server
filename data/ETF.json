@@ -1,7 +1,15 @@
 [
   {
+    "country": "日本 (Japan)",
+    "etf": "EWJ"
+  },
+  {
     "country": "Japan",
     "etf": "EWJ"
+  },
+  {
+    "country": "China 中国",
+    "etf": "FXI"
   },
   {
     "country": "China",
@@ -12,7 +20,15 @@
     "etf": "BRZU"
   },
   {
+    "country": "Brasil",
+    "etf": "BRZU"
+  },
+  {
     "country": "Russia",
+    "etf": "RSX"
+  },
+  {
+    "country": "Россия",
     "etf": "RSX"
   },
   {
@@ -20,7 +36,15 @@
     "etf": "EWG"
   },
   {
+    "country": "Deutschland",
+    "etf": "EWG"
+  },
+  {
     "country": "Italy",
+    "etf": "EWI"
+  },
+  {
+    "country": "Italia",
     "etf": "EWI"
   },
   {
@@ -52,6 +76,10 @@
     "etf": "EWK"
   },
   {
+    "country": "België - Belgique - Belgien",
+    "etf": "EWK"
+  },
+  {
     "country": "France",
     "etf": "EWQ"
   },
@@ -60,7 +88,15 @@
     "etf": "QAT"
   },
   {
+    "country": "قطر Qatar",
+    "etf": "QAT"
+  },
+  {
     "country": "Sweden",
+    "etf": "EWD"
+  },
+  {
+    "country": "Sverige",
     "etf": "EWD"
   },
   {
@@ -68,7 +104,15 @@
     "etf": "TUR"
   },
   {
+    "country": "Türkiye",
+    "etf": "TUR"
+  },
+  {
     "country": "Vietnam",
+    "etf": "VNM"
+  },
+  {
+    "country": "Việt Nam",
     "etf": "VNM"
   },
   {
@@ -102,5 +146,9 @@
   {
     "country": "Ireland",
     "etf": "EIRL"
-  }
+  },
+  {
+    "country": "Kalaallit Nunaat",
+    "etf": "GLAC"
+  },
 ]
