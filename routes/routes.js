@@ -5,11 +5,11 @@ const stockRoutes = require("./stock");
 const bordersRoutes = require("./borders");
 const reversegeoRoutes = require("./reversegeo");
 
-const appRouter = (app, fs, fetch) => {
+const appRouter = (app, fs, fetch, req) => {
   wfRoutes(app, fs);
   emailRoutes(app);
   weatherRoutes(app, fetch);
-  stockRoutes(app, fs, fetch);
+  stockRoutes(app, fs, req);
   bordersRoutes(app, fetch, fs);
   reversegeoRoutes(app, fetch);
 };
