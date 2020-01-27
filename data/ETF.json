@@ -1,0 +1,130 @@
+[
+  {
+    "country": "Japan",
+    "etf": "EWJ"
+  },
+  {
+    "country": "China",
+    "etf": "FXI"
+  },
+  {
+    "country": "Brazil",
+    "etf": "BRZU"
+  },
+  {
+    "country": "Russia",
+    "etf": "RSX"
+  },
+  {
+    "country": "Germany",
+    "etf": "EWG"
+  },
+  {
+    "country": "Italy",
+    "etf": "EWI"
+  },
+  {
+    "country": "India",
+    "etf": "PIN"
+  },
+  {
+    "country": "Canada",
+    "etf": "EWC"
+  },
+  {
+    "country": "Mexico",
+    "etf": "EWW"
+  },
+  {
+    "country": "United Arab Emirates",
+    "etf": "UAE"
+  },
+  {
+    "country": "South Africa",
+    "etf": "EZA"
+  },
+  {
+    "country": "Argentina",
+    "etf": "ARGT"
+  },
+  {
+    "country": "Belgium",
+    "etf": "EWK"
+  },
+  {
+    "country": "Colombia",
+    "etf": "COLX"
+  },
+  {
+    "country": "Peru",
+    "etf": "EP"
+  },
+  {
+    "country": "France",
+    "etf": "EWQ"
+  },
+  {
+    "country": "Philippines",
+    "etf": "EPHE"
+  },
+  {
+    "country": "Qatar",
+    "etf": "QAT"
+  },
+  {
+    "country": "Sweden",
+    "etf": "EWD"
+  },
+  {
+    "country": "Turkey",
+    "etf": "TUR"
+  },
+  {
+    "country": "United Kingdom",
+    "etf": "EWU"
+  },
+  {
+    "country": "Vietnam",
+    "etf": "VNM"
+  },
+  {
+    "country": "Taiwan",
+    "etf": "EWT"
+  },
+  {
+    "country": "South Korea",
+    "etf": "KORU"
+  },
+  {
+    "country": "Israel",
+    "etf": "EIS"
+  },
+  {
+    "country": "Denmark",
+    "etf": "EDEN"
+  },
+  {
+    "country": "Australia",
+    "etf": "EWA"
+  },
+  {
+    "country": "United States of America",
+    "etf": "SPY"
+  },
+  {
+    "country": " Netherlands",
+    "etf": "EWN"
+  },
+  {
+    "country": "Portugal",
+    "etf": "PGAL"
+  },
+  {
+    "country": "Nigeria",
+    "etf": "NGE"
+  },
+  {
+    "country": "Ireland",
+    "etf": "EIRL"
+  }
+]
