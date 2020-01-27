@@ -9,7 +9,7 @@ const appRouter = (app, fs, fetch) => {
   wfRoutes(app, fs);
   emailRoutes(app);
   weatherRoutes(app, fetch);
-  stockRoutes(app, fs);
+  stockRoutes(app, fs, fetch);
   bordersRoutes(app, fetch, fs);
   reversegeoRoutes(app, fetch);
 };

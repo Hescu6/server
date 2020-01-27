@@ -1,6 +1,6 @@
 var http = require("https");
 
-const stockRoutes = (app, fs) => {
+const stockRoutes = (app, fs, fetch) => {
   const etfPath = "data/ETF.json";
 
   const readFile = (
@@ -22,34 +22,23 @@ const stockRoutes = (app, fs) => {
       etfData.forEach(e => {
         if (e.country === request.params.config) {
           console.log(request.params.config);
-
-          var options = {
-            method: "GET",
-            hostname: "apidojo-yahoo-finance-v1.p.rapidapi.com",
-            port: null,
-            path:
-              `/stock/v2/get-chart?interval=1d&region=US&symbol=${e.etf}&lang=en&range=6mo`,
-            headers: {
+          fetch(`https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-chart?interval=1d&region=US&symbol=${e.etf}&lang=en&range=ytd`, {
+            "method": "GET",
+            "headers": {
               "x-rapidapi-host": "apidojo-yahoo-finance-v1.p.rapidapi.com",
               "x-rapidapi-key": process.env.YAHOOFINANCE_KEY
             }
-          };
-
-          var req = http.request(options, function(res) {
-            var chunks = [];
-
-            res.on("data", function(chunk) {
-              chunks.push(chunk);
-            });
-
-            res.on("end", function() {
-              var body = Buffer.concat(chunks);
-              //   console.log(body.toString());
-              response.json({ data: body.toString() });
-            });
+          })
+          .then(res => {
+            console.log(res);
+          })
+          .catch(err => {
+            console.log(err);
           });
 
-          req.end();
+
+
+
         }
       });
     }, true);
