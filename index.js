@@ -1,5 +1,6 @@
 const req = require("request");
 const fetch = require('node-fetch');
+const wakeDyno = require("./wakeDyno");
 const express = require('express');
 const bodyParser = require('body-parser');
 var cors = require('cors');
@@ -11,7 +12,7 @@ const app = express();
 
 const fs = require('fs');
 
-
+const dynoURL = 'https://hescu6server.herokuapp.com/';
 
 // configure express instance & body-parser settings 
 // handle JSON data
@@ -34,6 +35,7 @@ const routes = require('./routes/routes.js')(app, fs, fetch, req);
 
 
 const server = app.listen(process.env.PORT, () => {
+  wakeDyno(dynoURL);
   console.log('listening on port %s...', server.address().port);
 });
 
