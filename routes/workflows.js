@@ -6,7 +6,6 @@ const wfRoutes = (app, fs) => {
     const dataPath = './data/workflows.json';
 
 
-    // refactored helper methods
     const readFile = (callback, returnJson = false, filePath = dataPath, encoding = 'utf8') => {
         fs.readFile(filePath, encoding, (err, data) => {
             if (err) {

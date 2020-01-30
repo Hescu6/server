@@ -30,7 +30,7 @@ app.use(express.static('public'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// routes handler
+// routes handler feeds to all other routes
 const routes = require('./routes/routes.js')(app, fs, fetch, req);
 
 

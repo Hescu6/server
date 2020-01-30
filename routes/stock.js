@@ -1,4 +1,3 @@
-// var http = require("https");
 
 const stockRoutes = (app, fs, req) => {
   const etfPath = "data/ETF.json";
