@@ -1,6 +1,6 @@
 const req = require("request");
 const fetch = require('node-fetch');
-const wakeDyno = require("./wakeDyno");
+// const wakeDyno = require("./wakeDyno");
 const express = require('express');
 const bodyParser = require('body-parser');
 var cors = require('cors');
@@ -16,16 +16,19 @@ const dynoURL = 'https://hescu6server.herokuapp.com/';
 
 // configure express instance & body-parser settings 
 // handle JSON data
-app.use(cors(
-  {
-  origin:[
-    process.env.CORSWFLOCAL, 
-    process.env.CORSWFWEB, 
-    process.env.WFAPI_CORS,
-    process.env.CORSPORTFOLIO,
-    process.env.CORS_YAH]
-}
-));
+app.use(
+  cors({
+    // origin: [
+    //   process.env.CORSWFLOCAL,
+    //   process.env.CORSWFWEB,
+    //   process.env.WFAPI_CORS,
+    //   process.env.CORSPORTFOLIO,
+    //   process.env.CORS_YAH,
+    //   process.env.CORS_HOUSELIST_HESCUDERO,
+    //   process.env.CORS_HOUSELISTINGS_FIREBASEAPP
+    // ],
+  })
+);
 app.use(express.static('public'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -35,7 +38,7 @@ const routes = require('./routes/routes.js')(app, fs, fetch, req);
 
 
 const server = app.listen(process.env.PORT, () => {
-  wakeDyno(dynoURL);
+  // wakeDyno(dynoURL);
   console.log('listening on port %s...', server.address().port);
 });
 
